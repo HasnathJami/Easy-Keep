@@ -1,5 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -16,7 +14,7 @@ kotlin {
         }
     }
 
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -27,12 +25,14 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        
+
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.navigation.compose)
+            implementation(libs.androidx.navigation.runtime.ktx)
             api(compose.preview)
             api(compose.uiTooling)
         }
@@ -43,6 +43,9 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+        }
+        iosMain.dependencies {
+           // place ios specific dependencies here
         }
     }
 }
